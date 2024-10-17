@@ -1,0 +1,18 @@
+<nav>
+    <div class="nav-items container">
+      <div class="logo">
+        <a routerLink="/"><h1>Cocktails</h1></a>
+      </div>
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/drinks">Drinks</a></li>
+        <li><a routerLink="/search">Search</a></li>
+        <li><a routerLink="/random">Random Drink</a></li>
+        <li *ngIf="authService.isLoggedIn(); else loginLink" (click)="logout()"><a>Logout</a></li>
+        <ng-template #loginLink>
+          <li><a routerLink="/login">Login</a></li>
+        </ng-template>
+      </ul>
+    </div>
+  </nav>
+  

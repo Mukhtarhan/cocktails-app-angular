@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="cocktails-container">
+      <div *ngFor="let cocktail of cocktails" class="cocktail-card">
+        <img [src]="cocktail.strDrinkThumb" alt="Cocktail Image" />
+        <div class="cocktail-info">
+          <h2 class="cocktail-name">{{ cocktail.strDrink }}</h2>
+          <span>{{ cocktail.strCategory }}</span>
+          <a [routerLink]="['/drinks', cocktail.idDrink]">
+            <div class="btn">View Details</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
