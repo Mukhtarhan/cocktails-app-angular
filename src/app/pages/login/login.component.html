@@ -1,13 +1,76 @@
-<h2>Login</h2>
-<form (ngSubmit)="onSubmit()" class="login-container">
-  <div>
-    <label>Username:</label>
-    <input [(ngModel)]="username" type="text" name="username" />
+<div class="login-register-container">
+  <div class="tabs">
+    <button
+      [class.active]="!isRegistering"
+      (click)="setIsRegistering(false)"
+    >
+      Login
+    </button>
+    <button
+      [class.active]="isRegistering"
+      (click)="setIsRegistering(true)"
+    >
+      Register
+    </button>
   </div>
-  <div>
-    <label>Password:</label>
-    <input [(ngModel)]="password" type="password" name="password" />
+
+  <div class="form-container">
+    <h2>{{ isRegistering ? 'Register' : 'Login' }}</h2>
+    <form (ngSubmit)="handleSubmit()">
+      <div *ngIf="isRegistering">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="name"
+          name="name"
+          placeholder="Enter your name"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          [(ngModel)]="username"
+          name="username"
+          placeholder="Enter your username"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
+      </div>
+
+      <div *ngIf="isRegistering">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          placeholder="Confirm your password"
+          required
+        />
+      </div>
+
+      <button type="submit">
+        {{ isRegistering ? 'Register' : 'Login' }}
+      </button>
+    </form>
+
+    <p *ngIf="formError" class="error">{{ formError }}</p>
+    <p *ngIf="authError && !isRegistering" class="error">{{ authError }}</p>
   </div>
-  <button type="submit">Login</button>
-  <p *ngIf="error" style="color: red;">{{ error }}</p>
-</form>
+</div>

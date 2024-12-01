@@ -1,0 +1,26 @@
+<div class="container">
+    <div *ngIf="!user">
+      <h2>You need to log in to your account</h2>
+    </div>
+  
+    <div *ngIf="user" >
+      <div *ngIf="cocktails.length > 0; else noFavourites" class="cocktails-container">
+        <div class="cocktail-card"  *ngFor="let cocktail of cocktails" [attr.key]="cocktail.idDrink">
+          <img [src]="cocktail.image" [alt]="cocktail.name" class="cocktail-img" />
+  
+          <div class="cocktail-info">
+            <div class="content-text">
+              <h2 class="cocktail-name">{{ cocktail.name }}</h2>
+              <span class="cocktail-info">{{ cocktail.strCategory }}</span>
+            </div>
+            <button (click)="goToCocktailDetails(cocktail.idDrink)" class="btn">View Details</button>
+          </div>
+        </div>
+      </div>
+  
+      <ng-template #noFavourites>
+        <p>You haven't added any cocktails to your favourites yet.</p>
+      </ng-template>
+    </div>
+  </div>
+  

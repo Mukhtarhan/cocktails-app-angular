@@ -8,7 +8,8 @@ import { DrinksComponent } from './pages/drinks/drinks.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms';
+import { FavouritesComponent } from './favourites/favourites.component'; // Import FormsModule
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
     HomeComponent,
     DrinksComponent,
     ProductDetailComponent,
-    LoginComponent
+    LoginComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,
