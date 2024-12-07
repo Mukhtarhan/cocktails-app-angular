@@ -1,17 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
   searchTerm: string = '';
-  user: any; // Replace with a proper type if available
+  user: any = null; // Will hold the current user or null if logged out
 
-  constructor(private router: Router, private authService: AuthService) {
-    this.user = this.authService.getUser();
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    // Subscribe to the AuthService user observable
+    this.authService.getUser().subscribe((loggedInUser) => {
+      this.user = loggedInUser;
+    });
   }
 
   handleSearch(): void {
@@ -22,8 +28,6 @@ export class NavBarComponent {
   }
 
   logout(): void {
-    this.authService.logout();
-    this.user = null;
-    this.router.navigate(['/']);
+    this.authService.logout(); // AuthService will handle state update and routing
   }
 }

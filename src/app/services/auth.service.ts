@@ -95,12 +95,35 @@ export class AuthService {
 
   logout(): void {
     this.user = null;
-    this.userSubject.next(null); // Notify subscribers
-    localStorage.removeItem('user'); // Remove from localStorage
+    this.userSubject.next(null); // Emit null to notify subscribers
+    localStorage.removeItem('user'); // Clear stored user data
     this.router.navigate(['/login']);
   }
-
   isLoggedIn(): boolean {
     return this.user !== null;
   }
+
+  async updateUser(updatedUser: any): Promise<boolean> {
+    try {
+      const response = await fetch(`${this.API_URL}/${updatedUser.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedUser),
+      });
+  
+      if (response.ok) {
+        const newUser = await response.json();
+        this.setUser(newUser); // Update the user globally
+        return true;
+      } else {
+        throw new Error('Failed to update user');
+      }
+    } catch (err) {
+      console.error('Error updating user:', err);
+      return false;
+    }
+  }
+  
 }

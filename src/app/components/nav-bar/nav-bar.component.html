@@ -34,11 +34,14 @@
         <li><a routerLink="/">Home</a></li>
         <li><a routerLink="/drinks">Drinks</a></li>
         <li><a routerLink="/favourites">Favourites</a></li>
-        <li *ngIf="user; else loginLink" (click)="logout()"><a>Logout</a></li>
+        <li *ngIf="user; else loginLink">
+          <a routerLink="/profile">Profile</a>
+        </li>
         <ng-template #loginLink>
           <li><a routerLink="/login">Login</a></li>
         </ng-template>
       </ul>
+      
     </div>
   </nav>
 </div>

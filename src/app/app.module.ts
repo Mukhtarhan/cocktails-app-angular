@@ -9,7 +9,8 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { FavouritesComponent } from './favourites/favourites.component'; // Import FormsModule
+import { FavouritesComponent } from './favourites/favourites.component';
+import { ProfileComponent } from './pages/profile/profile.component'; // Import FormsModule
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FavouritesComponent } from './favourites/favourites.component'; // Impo
     DrinksComponent,
     ProductDetailComponent,
     LoginComponent,
-    FavouritesComponent
+    FavouritesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
